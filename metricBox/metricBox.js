@@ -48,7 +48,7 @@ angular
                 "fetchDataInterval": "@",
                 "useWindowParams": "@"
             },
-            templateUrl: '/UIComponents/dashboard/frontend/components/metricBox/metricBox.html',
+            templateUrl: '/UIWidgets/metricBox/metricBox.html',
             controller: function ($scope, httpClient, wsClient, $element, $window, $timeout, $interval, $window, dataService ) {
 
                 var self = this;
