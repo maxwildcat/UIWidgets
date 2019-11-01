@@ -2,7 +2,7 @@
 	<div ng-if="$ctrl.disabled" id="disabledOverlay"></div>
 	<div class="metric-box-head">
 		<div class="metric-box-action" >
-			<img ng-if='$ctrl.actionIcon!=""' ng-click="actionClicked()" alt="{{$ctrl.label}}" src="{{$ctrl.actionIcon}}" />
+			<img ng-if='$ctrl.actionIcon!=""' ng-click="actionClicked()" alt="EI" src="{{$ctrl.actionIcon}}" />
 		</div>
 		<div class="metric-box-label" ng-style="{	'font-weight' : '{{$ctrl.labelFontWeight}}', 'font-family' : '{{$ctrl.labelFontFamily}}', 'color' : '{{$ctrl.labelTextColor}}', 'text-align' : '{{$ctrl.labelTextAlignment}}' }">
 				{{$ctrl.label}}
@@ -20,8 +20,8 @@
 			</div>
 		</div>
 
-		<div class="metric-box-icon">
-			 <img alt="{{$ctrl.tag | uppercase}}" src="{{$ctrl.icon}}" />
+		<div ng-if='$ctrl.icon!=""' class="metric-box-icon">
+			 <img alt="EI" src="{{$ctrl.icon}}" />
 		</div>
 	</div>
 </div>
