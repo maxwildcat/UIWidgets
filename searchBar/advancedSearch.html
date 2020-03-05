@@ -1,0 +1,82 @@
+<div>
+      <div class="advanced-filtering">
+                  <div class="row">
+                   <label class="col-sm-2 control-label">Advanced Filtering</label>
+                   <div class="col-sm-3">
+                     <ui-select ng-model="$ctrl.searchModel" theme="bootstrap" on-select="$ctrl.onSelected($select.selected)">
+                       <ui-select-match placeholder="Select filtering option...">{{$select.selected.label}}</ui-select-match>
+                       <ui-select-choices repeat="option in $ctrl._options| filter: $select.search">
+                         <span ng-bind-html="option.label | highlight: $select.search"></span>
+                       </ui-select-choices>
+                     </ui-select>
+                   </div>
+                   <div class="col-sm-7" ng-if="$ctrl.showRecordCount">
+                    <input type="number" placeholder="Set data points" ng-model="$ctrl.recordCount" class="input-style" min="1" step="20" ng-keypress="($event.keyCode === 13 || $event.keyCode === 32) && $ctrl.filterData()"/>
+              		</div>
+                  <div class="col-sm-7"  ng-if="$ctrl.showDatePicker">
+                    <scriptr-date-time-picker widget-layout="horizontal"
+                                              type="range"
+                                              date-range-start="$ctrl.dateRangeStart"
+                                              date-range-end="$ctrl.dateRangeEnd"
+                                              start-date-config="{ startView:'day', minView:'day'}"
+                                              end-date-config="{ startView:'day', minView:'day' }"
+                                              start-date-on-set-time="$ctrl.startDateOnSetTime"
+                                              end-date-on-set-time="$ctrl.endDateOnSetTime"
+                                              >
+                    </scriptr-date-time-picker>
+              		</div>
+                  <div class="col-sm-4"  ng-if="$ctrl.showDayPicker">
+                    <scriptr-date-time-picker 
+                                      type="dropDownInput"
+                                      date="$ctrl.dateDay"
+                                      start-date-config="{ startView:'day', minView:'day' }"
+                                      on-set-time="$ctrl.onSetTime"
+                                      >
+            				</scriptr-date-time-picker>
+                  </div>
+                 </div>
+   </div>
+   <div><sub>{{'REPORTS.REM' | translate}}</sub></div>
+</div> 
+
+
+ <!--div class="report-option-choice">
+<div class="report-option-cell">
+<label style="float: left;">
+<input type="radio" ng-model="vm.setoutput.name" value="bydate">
+{{'REPORTS.BYDAY' | translate}}
+</label>
+<div style="float: left;" ng-if="vm.setoutput.name=='bydate'">
+<scriptr-date-time-picker 
+type="dropDownInput"
+start-date-config="{ startView:'day', minView:'day' }"
+on-set-time="vm.onSetTime"
+>
+</scriptr-date-time-picker>
+</div>
+</div>
+<div class="report-option-cell">
+<label style="float: left;">
+<input type="radio" ng-model="vm.setoutput.name" value="byrange">
+{{'REPORTS.BYDATE' | translate}}
+</label>
+<div style="float: left;" ng-if="vm.setoutput.name=='byrange'">
+<scriptr-date-time-picker
+type="range"
+start-date-config="{ startView:'day', minView:'day' }"
+end-date-config="{ startView:'day', minView:'day' }"
+on-set-time="vm.onSetTime" 
+start-date-on-set-time="vm.startDateOnSetTime"
+end-date-on-set-time="vm.endDateOnSetTime"
+>
+</scriptr-date-time-picker>
+</div>
+</div>
+<div class="report-option-cell">
+<label>
+<input type="radio" ng-change="vm.fiftyRecords()" ng-model="vm.setoutput.name" value="fifty">
+{{'REPORTS.LAST50' | translate}}
+</label>
+</div>
+</div>
+<div class="date-selection">{{'REPORTS.SELECTION' | translate}}: {{vm.getDateRangeStart}}{{vm.getDateRangeEnd}}</div-->

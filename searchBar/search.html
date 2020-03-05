@@ -1,0 +1,22 @@
+<div class="col-xs-12 autocomplete-wrap">
+  <label>{{$ctrl.label}}</label>
+   <scriptr-autocomplete
+                          id="devicesList"
+                          placeholder="Ex. MS"
+                          pause="400"
+                          search-fields="key,name"
+                          title-field="name"
+                          minlength="0"
+                          api="{{$ctrl.api}}"                 
+                          text-searching="Searching..."
+                          text-no-results="{{ 'NOTFOUND' | translate: $ctrl.searchText }}"   
+                          msg-tag="devices-search-box"
+                          transport="wss"
+                          objects="[]"
+                          initial-value="{{$ctrl.selectedValue}}"
+                          on-format-data="$ctrl.listCallback"
+                          selected-object="$ctrl.onSelect"
+                          input-changed="$ctrl.onInputChanged"
+                          input-class="form-control form-control-small">
+    </scriptr-autocomplete>
+</div>
