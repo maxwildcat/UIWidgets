@@ -2,8 +2,9 @@
 	<div ng-if="$ctrl.disabled" id="disabledOverlay"></div>
 	<div class="metric-box-head">
 		<div class="metric-box-action" >
-			<img ng-if='$ctrl.actionIcon!=""' ng-click="actionClicked()" alt="EI" src="{{$ctrl.actionIcon}}" />
+			<img ng-if='$ctrl.actionIcon!=""' ng-click="$ctrl.clickLink()" alt="EI" src="{{$ctrl.actionIcon}}" />
 		</div>
+		<input type="checkbox" class="checkbox" ng-change="$ctrl.clickCheck()" ng-model="$ctrl.clickedModel">
 		<div class="metric-box-label" ng-style="{	'font-weight' : '{{$ctrl.labelFontWeight}}', 'font-family' : '{{$ctrl.labelFontFamily}}', 'color' : '{{$ctrl.labelTextColor}}', 'text-align' : '{{$ctrl.labelTextAlignment}}' }">
 				{{$ctrl.label}}
 		</div>

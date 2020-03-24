@@ -7,14 +7,14 @@ angular
         {
 
             bindings: {
-                
+
                 "value": "<?",
-              	"disabled": "<?",
+                "disabled": "<?",
                 "label": "@",
                 "unit": "@",
                 "borderSize": "@",
                 "icon": "@",
-              	"tag": "@",
+                "tag": "@",
                 "actionIcon": "@",
                 "borderColor": "@",
                 "backgroundColor": "@",
@@ -44,18 +44,19 @@ angular
                 "msgTag": "@",
                 "apiParams": "<?",
                 "onFormatData": "&",
-              "onActionClicked": "&",
+                "onActionClicked": "&",
                 "fetchDataInterval": "@",
-                "useWindowParams": "@"
+                "useWindowParams": "@",
+                "clickedModel": "<?"
             },
             templateUrl: '/UIWidgets/metricBox/metricBox.html',
-            controller: function ($scope, httpClient, wsClient, $element, $window, $timeout, $interval, $window, dataService ) {
+            controller: function ($scope, httpClient, wsClient, $element, $window, $timeout, $interval, $window, wDataService ) {
 
                 var self = this;
                 self.isLoading = false;
-								
+
                 this.$onInit = function () {
-                 
+
                     this._apiParams = (this.apiParams) ? angular.copy(this.apiParams) : [];
                     this.widgetLayout = (this.widgetLayout == "vertical") ? this.widgetLayout : "horizontal";
                     this.value = (this.value) ? (isNaN(this.value) ? "0" : this.value) : "0";
@@ -63,8 +64,8 @@ angular
                     this.unit = (this.unit) ? this.unit  : "";
                     this.actionIcon = (this.actionIcon) ? this.actionIcon  : "";
                     this.icon = (this.icon) ? this.icon  : "";
-                  	this.tag = (this.tag) ? this.tag  : "NO_TAG";
-                  	this.disabled = (this.disabled) ? this.disabled  : false;
+                    this.tag = (this.tag) ? this.tag  : "NO_TAG";
+                    this.disabled = (this.disabled) ? this.disabled  : false;
                     this.borderSize = (this.borderSize) ? this.borderSize : "1";
                     this.valueCellSize = (this.valueCellSize) ? this.valueCellSize : "";
                     this.borderColor = (this.borderColor) ? this.borderColor : "#ff8c00";
@@ -102,12 +103,31 @@ angular
                 }
 
                 this.$postLink = function () {
-                    $timeout(self.resize, 100);
-                    if (self.timeoutId != null) {
-                        $timeout.cancel(self.timeoutId);
-                    }
-                    self.timeoutId = $timeout(self.resize, 100);
-                    initDataService(this.transport);
+                   $timeout(self.resize, 100);
+                   if (self.timeoutId != null) {
+                       $timeout.cancel(self.timeoutId);
+                   }
+                   self.timeoutId = $timeout(self.resize, 100);
+
+/*                   $scope.$watch(function( $scope ) {
+                      // wait for the timeout
+                      if($scope.$ctrl.clickedModel){
+                        return $scope.$ctrl.clickedModel
+                      }
+                   },function(newVal, oldVal){
+                     	if(newVal != oldVal)
+                         self.actionClicked(self.tag, newVal)
+                   });*/
+
+                   initDataService(this.transport);
+                }
+
+                self.clickLink = function(){
+                  $scope.$ctrl.clickedModel = !$scope.$ctrl.clickedModel;
+                  self.actionClicked(self.tag, $scope.$ctrl.clickedModel);
+                }
+                self.clickCheck = function(){
+                  self.actionClicked(self.tag, $scope.$ctrl.clickedModel);
                 }
 
                 this.$onDestroy = function () {
@@ -121,8 +141,8 @@ angular
                 }
 
                 var initDataService = function (transport) {
-                  console.log(dataService );
-                    dataService .getData(transport, self.api, self.apiParams, self.useWindowParams, self.msgTag, self.consumeData.bind(self), self.fetchDataInterval, $scope.$id);
+                  console.log(wDataService );
+                    wDataService .getData(transport, self.api, self.apiParams, self.useWindowParams, self.msgTag, self.consumeData.bind(self), self.fetchDataInterval, $scope.$id);
 
                     if (self.fetchDataInterval && !self.refreshTimer) {
                         //Assuming this is success
@@ -132,10 +152,10 @@ angular
                             }, self.fetchDataInterval * 1000);
                     }
                 }
-                $scope.actionClicked=function(){
-                  console.log("actionClicked")
+
+                self.actionClicked=function(tag, value){
                   if (typeof self.onActionClicked() == "function") {
-                         self.onActionClicked()(self.tag);
+                         self.onActionClicked()(tag, value);
                     }
                 }
 
