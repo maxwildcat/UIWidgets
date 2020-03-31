@@ -8,7 +8,8 @@ angular
       "label": "@",
       "api":"@",
       "selectedDevice": "@",
-      "defaultPath": "@"
+      "defaultPath": "@",
+      "allPath": "@" //If not available, defaultPath is used
       
     },
     templateUrl:'/UIWidgets/searchBar/search.html',
@@ -49,13 +50,14 @@ angular
           self.params = {"id": data.originalObject.key}
         }
         if(data.originalObject.key == "all") {
-          $location.path(self.defaultPath);
+          $location.path((self.allPath) ? self.allPath : self.defaultPath);
         } else {
           if($routeParams.deviceId)
             $route.updateParams({"deviceId": data.originalObject.key});
           else 
             $location.path(self.defaultPath + "/deviceId/" + data.originalObject.key);
         }
+        $location.search({});
         return data;
       }
     }   
