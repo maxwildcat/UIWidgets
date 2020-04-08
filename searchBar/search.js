@@ -45,20 +45,22 @@ angular
       }
       
       self.onSelect = function(data){
-        if(data){
-          self.selectedValue = data.originalObject.name;
-          self.params = {"id": data.originalObject.key}
+        if(data!=undefined) {
+          if(data){
+            self.selectedValue = data.originalObject.name;
+            self.params = {"id": data.originalObject.key}
+          }
+          if(data.originalObject.key == "all") {
+            $location.path((self.allPath) ? self.allPath : self.defaultPath);
+          } else {
+            if($routeParams.deviceId)
+              $route.updateParams({"deviceId": data.originalObject.key});
+            else 
+              $location.path(self.defaultPath + "/deviceId/" + data.originalObject.key);
+          }
+          $location.search({});
+          return data;
         }
-        if(data.originalObject.key == "all") {
-          $location.path((self.allPath) ? self.allPath : self.defaultPath);
-        } else {
-          if($routeParams.deviceId)
-            $route.updateParams({"deviceId": data.originalObject.key});
-          else 
-            $location.path(self.defaultPath + "/deviceId/" + data.originalObject.key);
-        }
-        $location.search({});
-        return data;
       }
     }   
   });
