@@ -11,13 +11,19 @@
 	</div>
 
 	<div class="metric-box-body">
-		<div class="metric-box-value-unit">
-			<div class="metric-box-value" ng-style="{ 'font-weight' : '{{$ctrl.valueFontWeight}}', 'font-family' : '{{$ctrl.valueFontFamily}}', 'color' : '{{$ctrl.valueTextColor}}', 'text-align' : '{{$ctrl.valueTextAlignment}}' }" style="flex: auto;">
+		<div class="metric-box-value-unit" ng-if="!$ctrl.latValue">
+			<div class="metric-box-value" ng-style="{	'font-weight' : '{{$ctrl.valueFontWeight}}', 'font-family' : '{{$ctrl.valueFontFamily}}', 'color' : '{{$ctrl.valueTextColor}}', 'text-align' : '{{$ctrl.valueTextAlignment}}' }" style="flex: auto;">
 				<div>{{$ctrl.value}}</div>
-
 			</div>
 			<div class="metric-box-unit" ng-style="{ 'font-weight' : '{{$ctrl.unitFontWeight}}', 'font-family' : '{{$ctrl.unitFontFamily}}', 'color' : '{{$ctrl.unitTextColor}}', 'text-align' : '{{$ctrl.unitTextAlignment}}' }" style="flex: auto;">
 					<div>{{$ctrl.unit}}</div>
+			</div>
+		</div>
+
+		<div style="width:200%;" class="metric-box-value-unit textunit" ng-if="$ctrl.latValue">
+			<div class="metric-box-value textval">
+				{{$ctrl.latValue}}</br>
+				{{$ctrl.longValue}}
 			</div>
 		</div>
 
