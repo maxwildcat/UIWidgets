@@ -110,4 +110,7 @@
 .metric-box-unit{
   font-size: 1.5em;
   width: auto;
-} 
+}
+
+.textunit{ width: 200%; } 
+.textval { font-size: 1em;line-height: 1em;text-align: left;}

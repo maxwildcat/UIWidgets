@@ -9,7 +9,9 @@ angular
             bindings: {
                 
                 "value": "<?",
-              	"disabled": "<?",
+              "latValue": "@",
+              "longValue": "@",
+                "disabled": "<?",
                 "label": "@",
                 "unit": "@",
                 "borderSize": "@",
@@ -60,6 +62,17 @@ angular
                     this._apiParams = (this.apiParams) ? angular.copy(this.apiParams) : [];
                     this.widgetLayout = (this.widgetLayout == "vertical") ? this.widgetLayout : "horizontal";
                     this.value = (this.value) ? (isNaN(this.value) ? "0" : this.value) : "0";
+
+/*                  // forcing 2 decimals
+                  var isnum = /^\d+\.\d+$/.test(this.value);//check if string is made only of numbers/float
+                  if(isnum){
+                    var thisValue = parseFloat(this.value);
+                    this.value = +thisValue.toFixed(2);
+                  }*/
+
+                  this.latValue = (this.latValue) ? "" : this.latValue;
+                  this.longValue = (this.longValue) ? "" : this.longValue;
+
                     this.label = (this.label) ? this.label : "Items";
                     this.unit = (this.unit) ? this.unit  : "";
                     this.actionIcon = (this.actionIcon) ? this.actionIcon  : "";
