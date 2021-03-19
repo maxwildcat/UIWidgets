@@ -5,27 +5,28 @@
 			<img ng-if='$ctrl.actionIcon!=""' ng-click="$ctrl.clickLink()" alt="EI" src="{{$ctrl.actionIcon}}" />
 		</div>
 		<input type="checkbox" class="checkbox" ng-change="$ctrl.clickCheck()" ng-model="$ctrl.clickedModel" ng-if='$ctrl.actionIcon!=""'>
-		<div class="metric-box-label" ng-style="{ 'font-weight' : '{{$ctrl.labelFontWeight}}', 'font-family' : '{{$ctrl.labelFontFamily}}', 'color' : '{{$ctrl.labelTextColor}}', 'text-align' : '{{$ctrl.labelTextAlignment}}' }">
+		<div class="metric-box-label" ng-style="{	'font-weight' : '{{$ctrl.labelFontWeight}}', 'font-family' : '{{$ctrl.labelFontFamily}}', 'color' : '{{$ctrl.labelTextColor}}', 'text-align' : '{{$ctrl.labelTextAlignment}}' }">
 				{{$ctrl.label}}
 		</div>
 	</div>
 
 	<div class="metric-box-body">
+
 		<div class="metric-box-value-unit" ng-if="!$ctrl.latValue">
-			<div class="metric-box-value" ng-style="{	'font-weight' : '{{$ctrl.valueFontWeight}}', 'font-family' : '{{$ctrl.valueFontFamily}}', 'color' : '{{$ctrl.valueTextColor}}', 'text-align' : '{{$ctrl.valueTextAlignment}}' }" style="flex: auto;">
-				<div>{{$ctrl.value}}</div>
+			<div class="metric-box-value" ng-style="{	'font-size' : '{{$ctrl.valueFontSize}}', 'font-weight' : '{{$ctrl.valueFontWeight}}', 'font-family' : '{{$ctrl.valueFontFamily}}', 'color' : '{{$ctrl.valueTextColor}}', 'text-align' : '{{$ctrl.valueTextAlignment}}' }" style="flex: auto;">
+				<div ng-bind-html="$ctrl.value"></div>
 			</div>
 			<div class="metric-box-unit" ng-style="{ 'font-weight' : '{{$ctrl.unitFontWeight}}', 'font-family' : '{{$ctrl.unitFontFamily}}', 'color' : '{{$ctrl.unitTextColor}}', 'text-align' : '{{$ctrl.unitTextAlignment}}' }" style="flex: auto;">
 					<div>{{$ctrl.unit}}</div>
 			</div>
 		</div>
 
-		<div style="width:200%;" class="metric-box-value-unit textunit" ng-if="$ctrl.latValue">
-			<div class="metric-box-value textval">
-				{{$ctrl.latValue}}</br>
-				{{$ctrl.longValue}}
-			</div>
-		</div>
+    <div style="width:200%;" class="metric-box-value-unit textunit" ng-if="$ctrl.latValue">
+      <div class="metric-box-value textval">
+          {{$ctrl.latValue}}</br>
+      		{{$ctrl.longValue}}
+      </div>
+    </div>
 
 		<div ng-if='$ctrl.icon!=""' class="metric-box-icon">
 			 <img alt="EI" src="{{$ctrl.icon}}" />
