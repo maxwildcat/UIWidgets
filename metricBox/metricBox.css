@@ -88,9 +88,10 @@
 .metric-box-value-unit {
   display: flex;
   flex-direction: row;
+  width: 100%;
 }
 .metric-box-icon{
-  width: 100%;
+  width: 50%;
   text-align: right;
 } 
 .metric-box-icon img{
